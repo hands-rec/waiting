@@ -15,10 +15,9 @@
   </head>
   <body>
     <h1>待ち時間予測 リトルの公式</h1>
-    <form class="form-inline">
+    <form id="form" class="form-inline">
       <input id="l" type="text" pattern="[0-9]*" class="form-control" placeholder="自分の前に居る人数">
       <input id="lambda" type="text" pattern="[0-9]*" class="form-control" placeholder="1分の間に自分の後ろに並んだ人数">
-      <button id="btn-calc" type="button" class="btn btn-primary btn-sm">計算</button>
       <p id="waiting"></p>
     </form>
 
@@ -26,9 +25,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
 $(function(){
-  $('#btn-calc').click(function(){
-    var w = $('#l').val() / $('#lambda').val();
-    $('#waiting').text("待ち時間は"+w+"分");
+  var $form = $('#form');
+  $form.find('#l, #lambda').focusout(function(){
+    var l = $('#l').val();
+    var lambda = $('#lambda').val();
+    
+    if (l == '' || lambda == '') {
+      return ;
+    }
+
+    var w_m = Math.floor(l / lambda);
+    var w_s = ((l / lambda) - w_m) * 60;
+    var $waiting = $('#waiting');
+    var waiting = '待ち時間は';
+    if (0 < w_m) {
+      waiting = waiting + w_m + '分';
+    }
+    if (0 < w_s) {
+      waiting = waiting + w_s + '秒';
+    }
+    $waiting.text(waiting);
   });
 });
     </script>
