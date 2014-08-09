@@ -15,11 +15,19 @@
   </head>
   <body>
     <h1>待ち時間予測 リトルの公式</h1>
-    <form id="form" class="form-inline">
-      <input id="l" type="text" pattern="[0-9]*" class="form-control" placeholder="自分の前に居る人数">
-      <input id="lambda" type="text" pattern="[0-9]*" class="form-control" placeholder="1分の間に自分の後ろに並んだ人数">
-      <p id="waiting"></p>
-    </form>
+    <div class="container">
+      <form id="form" class="form-inline">
+        <div class='form-group'>
+          <input id="l" type="text" pattern="[0-9]*" class="form-control" placeholder="自分の前に居る人数">
+        </div>
+        <div class='form-group'>
+          <input id="lambda" type="text" pattern="[0-9]*" class="form-control" placeholder="1分の間に自分の後ろに並んだ人数">
+        </div>
+        <div class='form-group'>
+          <p id="waiting"></p>
+        </div>
+      </form>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
