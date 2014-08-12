@@ -48,8 +48,7 @@ $(function(){
     }
 
     var w_m = Math.floor(l / lambda);
-    var w_s = ((l / lambda) - w_m) * 60;
-    var $waiting = $('#waiting');
+    var w_s = Math.ceil(((l / lambda) - w_m) * 60);
     var waiting = '待ち時間は';
     if (0 < w_m) {
       waiting = waiting + w_m + '分';
@@ -57,6 +56,7 @@ $(function(){
     if (0 < w_s) {
       waiting = waiting + w_s + '秒';
     }
+    var $waiting = $('#waiting');
     $waiting.text(waiting);
   });
 });
