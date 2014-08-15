@@ -22,13 +22,17 @@
     </header>
     <div class="container">
       <form id="form" class="form-inline">
-        <div class='form-group'>
+        <div class="form-group">
           <input id="l" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="自分の前に居る人数">
         </div>
-        <div class='form-group'>
-          <input id="lambda" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="1分間に自分の後ろに並んだ人数">
+        <div class="form-group mode">
+          <button type="button" id="normal" class="btn btn-primary btn-lg active">1分</button>
+          <button type="button" id="quick" class="btn btn-primary btn-lg ">30秒</button>
         </div>
-        <div class='form-group'>
+        <div class="form-group">
+          <input id="lambda" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="自分の後ろに並んだ人数">
+        </div>
+        <div class="form-group">
           <p id="waiting" class="form-control-static input-lg glyphicon glyphicon-time"></p>
         </div>
       </form>
@@ -38,8 +42,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
 $(function(){
-  var $form = $('#form');
-  $form.find('#l, #lambda').keyup(function(){
+
+  function updateWaiting() {
     var l = $('#l').val();
     var lambda = $('#lambda').val();
     
@@ -47,6 +51,11 @@ $(function(){
       return ;
     }
 
+
+    var mode = $('.mode .active').attr('id');
+    if ('quick' == mode) {
+      lambda = lambda * 2;
+    }
     var w_m = Math.floor(l / lambda);
     var w_s = Math.ceil(((l / lambda) - w_m) * 60);
     var waiting = '待ち時間は';
@@ -58,6 +67,44 @@ $(function(){
     }
     var $waiting = $('#waiting');
     $waiting.text(waiting);
+  }
+  var $form = $('#form');
+  
+  $form.find('.mode button').click(function(){
+    var id = $(this).attr('id');
+    if ('normal' == id) {
+      $('#normal').addClass('active');
+      $('#quick').removeClass('active');
+    } else {
+      $('#quick').addClass('active');
+      $('#normal').removeClass('active');
+    }
+    updateWaiting();
+  }); 
+
+  $form.find('#l, #lambda').keyup(function(){
+    updateWaiting();
+//    var l = $('#l').val();
+//    var lambda = $('#lambda').val();
+    
+//    if (l == '' || lambda == '') {
+//      return ;
+//    }
+//    var mode = $('.mode .active').attr('id');
+//    if ('quick' == mode) {
+//      lambda = lambda * 2;
+//    }
+//    var w_m = Math.floor(l / lambda);
+//    var w_s = Math.ceil(((l / lambda) - w_m) * 60);
+//    var waiting = '待ち時間は';
+//    if (0 < w_m) {
+//      waiting = waiting + w_m + '分';
+//    }
+//    if (0 < w_s) {
+//      waiting = waiting + w_s + '秒';
+//    }
+//    var $waiting = $('#waiting');
+//    $waiting.text(waiting);
   });
 });
     </script>
