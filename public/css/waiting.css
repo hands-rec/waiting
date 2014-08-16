@@ -4,5 +4,5 @@ body {
 header {
 }
 #mode, #timer {
-  display: inline;
+  display: inline-block;
 }
