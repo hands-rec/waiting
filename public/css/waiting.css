@@ -6,3 +6,6 @@ header {
 #mode, #timer {
   display: inline-block;
 }
+#timer p {
+  margin: 0;
+}
