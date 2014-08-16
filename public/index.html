@@ -25,9 +25,15 @@
         <div class="form-group">
           <input id="l" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="自分の前に居る人数">
         </div>
-        <div class="form-group mode">
-          <button type="button" id="normal" class="btn btn-primary btn-lg active">1分</button>
-          <button type="button" id="quick" class="btn btn-default btn-lg ">30秒</button>
+        <div class="form-group">
+          <div id="mode">
+            <button type="button" id="normal" class="btn btn-primary btn-lg active">1分</button>
+            <button type="button" id="quick" class="btn btn-default btn-lg ">30秒</button>
+          </div>
+          <div id="timer">
+            <p id="time"></p>
+            <button type="button" class="btn btn-info btn-lg">start</button>
+          </div>
         </div>
         <div class="form-group">
           <input id="lambda" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="自分の後ろに並んだ人数">
@@ -52,7 +58,7 @@ $(function(){
     }
 
 
-    var mode = $('.mode .active').attr('id');
+    var mode = $('#mode .active').attr('id');
     if ('quick' == mode) {
       lambda = lambda * 2;
     }
@@ -70,7 +76,7 @@ $(function(){
   }
   var $form = $('#form');
   
-  $form.find('.mode button').click(function(){
+  $form.find('#mode .btn').click(function(){
     var id = $(this).attr('id');
     if ('normal' == id) {
       $('#normal').addClass('active btn-primary').removeClass('btn-default');

@@ -3,3 +3,6 @@ body {
 }
 header {
 }
+#mode, #timer {
+  display: inline;
+}
