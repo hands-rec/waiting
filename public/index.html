@@ -27,11 +27,11 @@
         </div>
         <div class="form-group">
           <div id="mode">
-            <button type="button" id="normal" class="btn btn-primary btn-lg active">1分</button>
+            <button type="button" id="normal" class="btn btn-primary btn-lg active">60秒</button>
             <button type="button" id="quick" class="btn btn-default btn-lg ">30秒</button>
           </div>
           <div id="timer">
-            <p id="time"></p>
+            <p id="time">60秒</p>
             <button type="button" class="btn btn-info btn-lg">start</button>
           </div>
         </div>
@@ -81,36 +81,21 @@ $(function(){
     if ('normal' == id) {
       $('#normal').addClass('active btn-primary').removeClass('btn-default');
       $('#quick').removeClass('active btn-primary').addClass('btn-default');
+
+      $('time').text('60秒');
+
     } else {
       $('#quick').addClass('active btn-primary').removeClass('btn-default');
       $('#normal').removeClass('active btn-primary').addClass('btn-default');
+
+      $('time').text('30秒');
     }
+
     updateWaiting();
   }); 
 
   $form.find('#l, #lambda').keyup(function(){
     updateWaiting();
-//    var l = $('#l').val();
-//    var lambda = $('#lambda').val();
-    
-//    if (l == '' || lambda == '') {
-//      return ;
-//    }
-//    var mode = $('.mode .active').attr('id');
-//    if ('quick' == mode) {
-//      lambda = lambda * 2;
-//    }
-//    var w_m = Math.floor(l / lambda);
-//    var w_s = Math.ceil(((l / lambda) - w_m) * 60);
-//    var waiting = '待ち時間は';
-//    if (0 < w_m) {
-//      waiting = waiting + w_m + '分';
-//    }
-//    if (0 < w_s) {
-//      waiting = waiting + w_s + '秒';
-//    }
-//    var $waiting = $('#waiting');
-//    $waiting.text(waiting);
   });
 });
     </script>
