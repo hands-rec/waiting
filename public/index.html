@@ -21,29 +21,38 @@
       </div>
     </header>
     <div class="container">
-      <form id="form" class="form-inline">
-        <div class="form-group">
-          <input id="l" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="自分の前に居る人数">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6">
+          <form id="form">
+            <div class="form-group">
+              <input id="l" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="自分の前に居る人数">
+            </div>
+            <div id="mode" class="form-group row">
+              <div class="col-xs-6">
+                <button type="button" id="normal" class="btn btn-block btn-primary btn-lg active">60秒</button>
+              </div>
+              <div class="col-xs-6">
+                <button type="button" id="quick" class="btn btn-block btn-default btn-lg">30秒</button>
+              </div>  
+            </div>
+            <div>
+              <p class="input-lg text-center">の間に</p>
+            </div>
+            <div class="form-group">
+              <input id="lambda" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="自分の後ろに並んだ人数">
+            </div>
+            <div class="form-group">
+              <p id="waiting" class="form-control-static input-lg">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                <span id="time"></span>
+              </p>
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <div id="mode">
-            <button type="button" id="normal" class="btn btn-primary btn-lg active">60秒</button>
-            <button type="button" id="quick" class="btn btn-default btn-lg ">30秒</button>
-          </div>
-          <div id="timer">
-            <p id="time" class="form-control-static input-lg">60秒</p>
-            <button type="button" class="btn btn-info btn-lg">start</button>
-          </div>
+        <div class="col-xs-12 col-sm-6">
         </div>
-        <div class="form-group">
-          <input id="lambda" type="text" pattern="[0-9]*" class="input-lg form-control" placeholder="自分の後ろに並んだ人数">
-        </div>
-        <div class="form-group">
-          <p id="waiting" class="form-control-static input-lg glyphicon glyphicon-time"></p>
-        </div>
-      </form>
+      </div>
     </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
@@ -56,7 +65,6 @@ $(function(){
     if (l == '' || lambda == '') {
       return ;
     }
-
 
     var mode = $('#mode .active').attr('id');
     if ('quick' == mode) {
@@ -71,7 +79,7 @@ $(function(){
     if (0 < w_s) {
       waiting = waiting + w_s + '秒';
     }
-    var $waiting = $('#waiting');
+    var $waiting = $('#waiting #time');
     $waiting.text(waiting);
   }
   var $form = $('#form');
