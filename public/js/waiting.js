@@ -84,18 +84,25 @@ $(function(){
     var timer = null;
     var little = null;
     
+    var $countdownTxt = $('#countdown');
+    var $countTxt = $('#count');
+    var $l = $('#l');
+    var $waitingTime = $('#time');
+    var $startBtn = $('#startBtn');
+    var $plusBtn = $('#plusBtn');
+    
     function updateTimerText() {
-      $('#countdown').text(timer.getTime());
+      $countdownTxt.text(timer.getTime());
     }
     
     function updateCountText() {
-      $('#count').text(counter.getCount());
+      $countTxt.text(counter.getCount());
     }
     
     function updateWaitingTimeText() {
       little.waitingTime(
-        $('#l').val(),
-        $('#count').text()
+        $l.val(),
+        $countTxt.text()
       ); 
       var waiting = "待ち時間は";
       if (0 < little.getWatingTimeMinute()) {
@@ -104,23 +111,23 @@ $(function(){
       if (0 < little.getWatingTimeSecond()) {
         waiting += little.getWatingTimeSecond() + "秒";
       }
-      $('#waiting #time').text(waiting);
+      $waitingTime.text(waiting);
     }
     
-    $('#count').on('change', function(){
+    $countTxt.on('change', function(){
       updateWaitingTimeText();
     });
     
-    $('#l').on('keyup', function(){
-      $('#startBtn').prop('disabled', false);  
+    $l.on('blur', function(){
+      $startBtn.prop('disabled', false);  
     });
     
-    $('#startBtn').click(function(e){
-      $('#plusBtn').prop('disabled', false).removeClass('btn-default').addClass('btn-primary');  
+    $startBtn.click(function(e){
+      $plusBtn.prop('disabled', false).removeClass('btn-default').addClass('btn-primary');  
       timer.startCountdown(updateTimerText);
     });
     
-    $('#plusBtn').click(function(e){
+    $plusBtn.click(function(e){
       counter.increment();
       updateCountText();
       updateWaitingTimeText();
